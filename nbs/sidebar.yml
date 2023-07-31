@@ -4,3 +4,4 @@ website:
       - index.ipynb
       - 00_core.ipynb
       - 01_HyDE-tutorial.ipynb
+      - 02_Train_vectorstore_index_with_Llamaindex.ipynb
