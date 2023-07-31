@@ -3,11 +3,6 @@ from configparser import ConfigParser
 import setuptools, shlex
 assert parse_version(setuptools.__version__)>=parse_version('36.2')
 
-##########
-pip install llama-index
-pip install langchain
-####
-
 
 # note: all settings are in settings.ini; edit there, not here
 config = ConfigParser(delimiters=['='])
