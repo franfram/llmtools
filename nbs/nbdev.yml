@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "llmtools"
+  site-url: "https://franfram.github.io/llmtools"
+  description: "A package with useful functions for working with Large Language Models"
+  repo-branch: main
+  repo-url: "https://github.com/franfram/llmtools"
