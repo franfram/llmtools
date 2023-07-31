@@ -5,4 +5,4 @@ d = { 'settings': { 'branch': 'main',
                 'doc_host': 'https://franfram.github.io',
                 'git_url': 'https://github.com/franfram/llmtools',
                 'lib_path': 'llmtools'},
-  'syms': {'llmtools.core': {'llmtools.core.foo': ('core.html#foo', 'llmtools/core.py')}}}
+  'syms': {'llmtools.core': {'llmtools.core.hello_llm': ('core.html#hello_llm', 'llmtools/core.py')}}}
