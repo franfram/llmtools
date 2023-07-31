@@ -5,4 +5,5 @@ d = { 'settings': { 'branch': 'main',
                 'doc_host': 'https://franfram.github.io',
                 'git_url': 'https://github.com/franfram/llmtools',
                 'lib_path': 'llmtools'},
-  'syms': {'llmtools.core': {'llmtools.core.hello_llm': ('core.html#hello_llm', 'llmtools/core.py')}}}
+  'syms': { 'llmtools.HyDE': {'llmtools.HyDE.test_hyde': ('hyde-tutorial.html#test_hyde', 'llmtools/HyDE.py')},
+            'llmtools.core': {'llmtools.core.hello_llm': ('core.html#hello_llm', 'llmtools/core.py')}}}
