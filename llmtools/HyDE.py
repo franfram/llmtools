@@ -3,7 +3,7 @@
 # %% auto 0
 __all__ = ['test_hyde']
 
-# %% ../nbs/01_HyDE-tutorial.ipynb 13
+# %% ../nbs/01_HyDE-tutorial.ipynb 15
 def test_hyde(): 
     "Test the accuracy of HyDE vs a base query"
     pass
