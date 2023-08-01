@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>llmtools - #</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="llmtools - #">
+<meta property="og:description" content="">
+<meta property="og:site-name" content="llmtools">
+<meta name="twitter:title" content="llmtools - #">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">llmtools</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools ms-auto">
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./llamaindex.html">llamaindex.html</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">llmtools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./core.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">core</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hyde-tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HyDE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_Train_vectorstore_index_with_Llamaindex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02_Train_vectorstore_index_with_Llamaindex.html</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./advance_query_engine_with_llamaindex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Use Keyword based Index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./llamaindex.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">llamaindex.html</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/franfram/llmtools/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">#</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<section id="section" class="level1">
+<h1></h1>
+</section>
+<section id="section-1" class="level1">
+<h1></h1>
+</section>
+<section id="section-2" class="level1">
+<h1></h1>
+<p>print(“hello”)</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'hello'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>hello</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install llama<span class="op">-</span>hub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Requirement already satisfied: llama-hub in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (0.0.15)
+Requirement already satisfied: atlassian-python-api in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-hub) (3.39.0)
+Requirement already satisfied: html2text in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-hub) (2020.1.16)
+Requirement already satisfied: llama-index&gt;=0.6.9 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-hub) (0.7.13)
+Requirement already satisfied: psutil in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-hub) (5.9.5)
+Requirement already satisfied: retrying in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-hub) (1.3.4)
+Requirement already satisfied: tiktoken in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-index&gt;=0.6.9-&gt;llama-hub) (0.4.0)
+Requirement already satisfied: dataclasses-json in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-index&gt;=0.6.9-&gt;llama-hub) (0.5.13)
+Requirement already satisfied: langchain&gt;=0.0.218 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-index&gt;=0.6.9-&gt;llama-hub) (0.0.244)
+Requirement already satisfied: sqlalchemy&gt;=2.0.15 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-index&gt;=0.6.9-&gt;llama-hub) (2.0.19)
+Requirement already satisfied: numpy in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-index&gt;=0.6.9-&gt;llama-hub) (1.25.1)
+Requirement already satisfied: tenacity&lt;9.0.0,&gt;=8.2.0 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-index&gt;=0.6.9-&gt;llama-hub) (8.2.2)
+Requirement already satisfied: openai&gt;=0.26.4 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-index&gt;=0.6.9-&gt;llama-hub) (0.27.8)
+Requirement already satisfied: pandas in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-index&gt;=0.6.9-&gt;llama-hub) (2.0.3)
+Requirement already satisfied: urllib3&lt;2 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-index&gt;=0.6.9-&gt;llama-hub) (1.26.16)
+Requirement already satisfied: fsspec&gt;=2023.5.0 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-index&gt;=0.6.9-&gt;llama-hub) (2023.6.0)
+Requirement already satisfied: typing-inspect&gt;=0.8.0 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-index&gt;=0.6.9-&gt;llama-hub) (0.9.0)
+Requirement already satisfied: typing-extensions&gt;=4.5.0 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-index&gt;=0.6.9-&gt;llama-hub) (4.7.1)
+Requirement already satisfied: beautifulsoup4 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-index&gt;=0.6.9-&gt;llama-hub) (4.12.2)
+Requirement already satisfied: nest-asyncio in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from llama-index&gt;=0.6.9-&gt;llama-hub) (1.5.6)
+Requirement already satisfied: deprecated in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from atlassian-python-api-&gt;llama-hub) (1.2.14)
+Requirement already satisfied: requests in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from atlassian-python-api-&gt;llama-hub) (2.31.0)
+Requirement already satisfied: six in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from atlassian-python-api-&gt;llama-hub) (1.16.0)
+Requirement already satisfied: oauthlib in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from atlassian-python-api-&gt;llama-hub) (3.2.2)
+Requirement already satisfied: requests-oauthlib in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from atlassian-python-api-&gt;llama-hub) (1.3.1)
+Requirement already satisfied: PyYAML&gt;=5.4.1 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from langchain&gt;=0.0.218-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (6.0.1)
+Requirement already satisfied: aiohttp&lt;4.0.0,&gt;=3.8.3 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from langchain&gt;=0.0.218-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (3.8.5)
+Requirement already satisfied: langsmith&lt;0.1.0,&gt;=0.0.11 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from langchain&gt;=0.0.218-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (0.0.14)
+Requirement already satisfied: numexpr&lt;3.0.0,&gt;=2.8.4 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from langchain&gt;=0.0.218-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (2.8.4)
+Requirement already satisfied: openapi-schema-pydantic&lt;2.0,&gt;=1.2 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from langchain&gt;=0.0.218-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (1.2.4)
+Requirement already satisfied: pydantic&lt;2,&gt;=1 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from langchain&gt;=0.0.218-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (1.10.12)
+Requirement already satisfied: marshmallow&lt;4.0.0,&gt;=3.18.0 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from dataclasses-json-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (3.20.1)
+Requirement already satisfied: tqdm in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from openai&gt;=0.26.4-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (4.65.0)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from requests-&gt;atlassian-python-api-&gt;llama-hub) (3.2.0)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from requests-&gt;atlassian-python-api-&gt;llama-hub) (3.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from requests-&gt;atlassian-python-api-&gt;llama-hub) (2023.7.22)
+Requirement already satisfied: greenlet!=0.4.17 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from sqlalchemy&gt;=2.0.15-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (2.0.2)
+Requirement already satisfied: mypy-extensions&gt;=0.3.0 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from typing-inspect&gt;=0.8.0-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (1.0.0)
+Requirement already satisfied: soupsieve&gt;1.2 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from beautifulsoup4-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (2.4.1)
+Requirement already satisfied: wrapt&lt;2,&gt;=1.10 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from deprecated-&gt;atlassian-python-api-&gt;llama-hub) (1.15.0)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from pandas-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from pandas-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (2023.3)
+Requirement already satisfied: tzdata&gt;=2022.1 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from pandas-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (2023.3)
+Requirement already satisfied: regex&gt;=2022.1.18 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from tiktoken-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (2023.6.3)
+Requirement already satisfied: attrs&gt;=17.3.0 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from aiohttp&lt;4.0.0,&gt;=3.8.3-&gt;langchain&gt;=0.0.218-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (23.1.0)
+Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from aiohttp&lt;4.0.0,&gt;=3.8.3-&gt;langchain&gt;=0.0.218-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (6.0.4)
+Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0.0a3 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from aiohttp&lt;4.0.0,&gt;=3.8.3-&gt;langchain&gt;=0.0.218-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (4.0.2)
+Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from aiohttp&lt;4.0.0,&gt;=3.8.3-&gt;langchain&gt;=0.0.218-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (1.9.2)
+Requirement already satisfied: frozenlist&gt;=1.1.1 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from aiohttp&lt;4.0.0,&gt;=3.8.3-&gt;langchain&gt;=0.0.218-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (1.4.0)
+Requirement already satisfied: aiosignal&gt;=1.1.2 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from aiohttp&lt;4.0.0,&gt;=3.8.3-&gt;langchain&gt;=0.0.218-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (1.3.1)
+Requirement already satisfied: packaging&gt;=17.0 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from marshmallow&lt;4.0.0,&gt;=3.18.0-&gt;dataclasses-json-&gt;llama-index&gt;=0.6.9-&gt;llama-hub) (23.1)
+
+[notice] A new release of pip available: 22.3.1 -&gt; 23.2.1
+[notice] To update, run: pip install --upgrade pip</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pypdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Requirement already satisfied: pypdf in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (3.13.0)
+
+[notice] A new release of pip available: 22.3.1 -&gt; 23.2.1
+[notice] To update, run: pip install --upgrade pip</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> llama_index <span class="im">import</span> VectorStoreIndex</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> llama_hub.<span class="bu">file</span>.pdf.base <span class="im">import</span> PDFReader</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Loader</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> PDFReader()</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>documents <span class="op">=</span> loader.load_data(<span class="bu">file</span><span class="op">=</span>Path(<span class="st">'../codigo_penal_de_la_republica_argentina.pdf'</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Chunking and Embedding of the chunks.</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> VectorStoreIndex.from_documents(documents)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieval, node poseprocessing, response synthesis. </span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>query_engine <span class="op">=</span> index.as_query_engine()</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the query engine on a user question.</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> query_engine.query(<span class="st">"que dice el articulo 14 del codigo penal argentino?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>Response(response='\nEl artículo 14 del Código Penal argentino establece que cuando alguno de los delitos previstos en el Código se haya cometido con la intervención de menores de dieciocho años de edad, la escala penal correspondiente se incrementará en un tercio del mínimo y del máximo respecto de los mayores que hubieren participado en el mismo.', source_nodes=[NodeWithScore(node=TextNode(id_='d153518b-5b34-4273-80a5-0cd16163f917', embedding=None, metadata={'page_label': '11', 'file_name': 'codigo_penal_de_la_republica_argentina.pdf'}, excluded_embed_metadata_keys=[], excluded_llm_metadata_keys=[], relationships={&lt;NodeRelationship.SOURCE: '1'&gt;: RelatedNodeInfo(node_id='d3da7c85-c799-460a-be76-8834524070cd', node_type=None, metadata={'page_label': '11', 'file_name': 'codigo_penal_de_la_republica_argentina.pdf'}, hash='ae36a6fa055db3f49b7c47c61c98d3ead0fe13e7bd7d97750d54f061d1e09859')}, hash='c049ec64a8e23fe671db12216bd0a4081de91b302b4b6c407c54eb0481837dfd', text='encuentra privada de su libertad, o la identidad de o tros partícipes o encubridores del hecho, o \ncualquier otro dato que posibilite su esclarecimiento. \nEn caso de corresponder prisión o reclusión perpetua, podr á aplicarse prisión o reclusión de \nOCHO (8) a QUINCE (15) años. \nSólo podrán gozar de este beneficio quienes tengan una  responsabilidad penal inferior a la de \nlas personas a quienes identificasen. \n(Artículo sustituido por art. 12 de la Ley N° 26.364 , B.O. 30/4/2008) \nARTICULO 41 quater —  Cuando alguno de los delitos previstos en este Código se a cometido \ncon la intervención de menores de dieciocho años de edad , la escala penal correspondiente se \nincrementará en un tercio del mínimo y del máximo, re specto de los mayores que hubieren \nparticipado en el mismo. \n(Artículo incorporado por art. 1° de la Ley N° 25.767  B.O. 1/9/2003) \nTITULO VI \nTENTATIVA \nARTICULO 42.-  El que con el fin de cometer un delito determinado co mienza su ejecución, \npero no lo consuma por circunstancias ajenas a su voluntad , sufrirá las penas determinadas en \nel artículo 44.  \nARTICULO 43.-  El autor de tentativa no estará sujeto a pena cuando desistiere \nvoluntariamente del delito.  \nARTICULO 44.-  La pena que correspondería al agente, si hubiere consum ado el delito, se \ndisminuirá de un tercio a la mitad.  \nSi la pena fuere de reclusión perpetua, la pena de la  tentativa será reclusión de quince a \nveinte años. Si la pena fuese de prisión perpetua, la de tentativa será prisión de diez a quince \naños.  \nSi el delito fuera imposible, la pena se disminuirá e n la mitad y podrá reducírsela al mínimo \nlegal o eximirse de ella, según el grado de peligrosi dad revelada por el delincuente.  \nTITULO VII \nPARTICIPACION CRIMINAL \nARTICULO 45.-  Los que tomasen parte en la ejecución del hecho o presta sen al autor o \nautores un auxilio o cooperación sin los cuales no habría podido cometerse, tendrán la pena \nestablecida para el delito. En la misma pena incurrirán  los que hubiesen determinado \ndirectamente a otro a cometerlo.  \nARTICULO 46.-  Los que cooperen de cualquier otro modo a la ejecución  del hecho y los que \npresten una ayuda posterior cumpliendo promesas anterior es al mismo, serán reprimidos con \nla pena correspondiente al delito, disminuida de un te rcio a la mitad. Si la pena fuere de \nreclusión perpetua, se aplicará reclusión de quince a vein te años y si fuere de prisión \nperpetua, se aplicará prisión de diez a quince años.', start_char_idx=0, end_char_idx=2467, text_template='{metadata_str}\n\n{content}', metadata_template='{key}: {value}', metadata_seperator='\n'), score=0.8807650146406303), NodeWithScore(node=TextNode(id_='c141b024-59fa-4629-937a-15fee065d86d', embedding=None, metadata={'page_label': '30', 'file_name': 'codigo_penal_de_la_republica_argentina.pdf'}, excluded_embed_metadata_keys=[], excluded_llm_metadata_keys=[], relationships={&lt;NodeRelationship.SOURCE: '1'&gt;: RelatedNodeInfo(node_id='8b732a4a-2bac-4536-92ff-7383b6e0a6da', node_type=None, metadata={'page_label': '30', 'file_name': 'codigo_penal_de_la_republica_argentina.pdf'}, hash='f569556778db476c853123dc79014bf01ab42e3e38fbe5807edccf87d63c227d')}, hash='e5f547ff996193be23f1ce97ab87edf67da0c4de2d59468fba406e5cd863231a', text='equitativo de armonizar el conflicto con mejor resguar do del interés de la víctima. En tal caso \nla acción penal quedará extinguida; o en el mismo supu esto también podrá disponer la \naplicación al caso de lo dispuesto por los artículos 76 ter  y 76 quáter del Código Penal.  \n(Artículo sustituido por art. 15 de la Ley N° 25.087  B.O. 14/5/1999) \nARTICULO 133.  - Los ascendientes, descendientes, cónyuges, convivientes, a fines en línea \nrecta, hermanos, tutores, curadores y cualesquiera persona que, con abuso de una relación de \ndependencia, de autoridad, de poder, de confianza o e ncargo, cooperaren a la perpetración de \nlos delitos comprendidos en este título serán reprimidos co n la pena de los autores. \n(Artículo sustituido por art. 13 de la Ley N° 25.087  B.O.14/5/1999) \n(Nota Infoleg:  rúbricas de los capítulos II, III, IV y V derogadas por art. 1° de la Ley N° \n25.087  B.O.14/5/1999) \nTITULO IV \nDELITOS CONTRA EL ESTADO CIVIL \nCapítulo I \nMatrimonios ilegales \nARTICULO 134.  - Serán reprimidos con prisión de uno a cuatro años, lo s que contrajeren \nmatrimonio sabiendo ambos que existe impedimento que ca use su nulidad absoluta.  \nARTICULO 135.  - Serán reprimidos con prisión de dos a seis años:  \n1º. El que contrajere matrimonio cuando, sabiendo que existe impedimento que cause su \nnulidad absoluta, ocultare esta circunstancia al otro contr ayente;  \n2º. El que engañando a una persona, simulare matrimon io con ella.  \nARTICULO 136.  - El oficial público que a sabiendas autorizare un mat rimonio de los \ncomprendidos en los artículos anteriores, sufrirá, en su ca so, la pena que en ellos se \ndetermina.  \nSi lo autorizare sin saberlo, cuando su ignorancia prove nga de no haber llenado los requisitos \nque la ley prescribe para la celebración del matrimonio , la pena será de multa de setecientos \ncincuenta a pesos doce mil quinientos e inhabilitación esp ecial por seis meses a dos años.  \nSufrirá multa de pesos setecientos cincuenta a pesos doce mi l quinientos el oficial público que, \nfuera de los demás casos de este artículo, procediere a la celebración de un matrimonio sin \nhaber observado todas las formalidades exigidas por la l ey.  \n(Nota Infoleg:  multa actualizada por art. 1° de la Ley N° 24.286  B.O. 29/12/1993) \nARTICULO 137.  - En la misma pena incurrirá el representante legítim o de un menor impúber \nque diere el consentimiento para el matrimonio del mi smo.  \nCapítulo II', start_char_idx=0, end_char_idx=2428, text_template='{metadata_str}\n\n{content}', metadata_template='{key}: {value}', metadata_seperator='\n'), score=0.878223415137106)], metadata={'d153518b-5b34-4273-80a5-0cd16163f917': {'page_label': '11', 'file_name': 'codigo_penal_de_la_republica_argentina.pdf'}, 'c141b024-59fa-4629-937a-15fee065d86d': {'page_label': '30', 'file_name': 'codigo_penal_de_la_republica_argentina.pdf'}})</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install wandb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> llama_index <span class="im">import</span> VectorStoreIndex</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> llama_index <span class="im">import</span> download_loader</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> llama_index <span class="im">import</span> ServiceContext</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> llama_index.callbacks <span class="im">import</span> CallbackManager, WandbCallbackHandler</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Loader</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>PDFReader <span class="op">=</span> download_loader(<span class="st">"PDFReader"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> PDFReader()</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>documents <span class="op">=</span> loader.load_data(<span class="bu">file</span><span class="op">=</span>Path(<span class="st">'../codigo_penal_de_la_republica_argentina.pdf'</span>))</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># initialise WandbCallbackHandler and pass any wandb.init args</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>wandb_args <span class="op">=</span> {<span class="st">"project"</span>:<span class="st">"ali-test-2"</span>}</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>wandb_callback <span class="op">=</span> WandbCallbackHandler(run_args<span class="op">=</span>wandb_args)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># pass wandb_callback to the service context</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>callback_manager <span class="op">=</span> CallbackManager([wandb_callback])</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>service_context <span class="op">=</span> ServiceContext.from_defaults(callback_manager<span class="op">=</span>callback_manager)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Chunking and Embedding of the chunks.</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> VectorStoreIndex.from_documents(documents, service_context<span class="op">=</span>service_context)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieval, node poseprocessing, response synthesis.</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>query_engine <span class="op">=</span> index.as_query_engine()</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the query engine on a user question.</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> query_engine.query(<span class="st">"que dice el articulo 14 del codigo penal argentino?"</span>)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>wandb: WARNING Serializing object of type str that is 433504 bytes
+wandb: WARNING Serializing object of type str that is 440774 bytes
+wandb: WARNING Serializing object of type str that is 433504 bytes
+wandb: WARNING Serializing object of type str that is 440774 bytes
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>Response(response='\nEl artículo 14 del Código Penal argentino establece que cuando alguno de los delitos previstos en el Código se haya cometido con la intervención de menores de dieciocho años de edad, la escala penal correspondiente se incrementará en un tercio del mínimo y del máximo respecto de los mayores que hubieren participado en el mismo.', source_nodes=[NodeWithScore(node=TextNode(id_='aab97e14-d6df-4e99-bb5f-43f3cddef01e', embedding=None, metadata={'page_label': '11', 'file_name': 'codigo_penal_de_la_republica_argentina.pdf'}, excluded_embed_metadata_keys=[], excluded_llm_metadata_keys=[], relationships={&lt;NodeRelationship.SOURCE: '1'&gt;: RelatedNodeInfo(node_id='5ac916ee-a87f-4bb2-ab54-6f60c12f241d', node_type=None, metadata={'page_label': '11', 'file_name': 'codigo_penal_de_la_republica_argentina.pdf'}, hash='ae36a6fa055db3f49b7c47c61c98d3ead0fe13e7bd7d97750d54f061d1e09859')}, hash='c049ec64a8e23fe671db12216bd0a4081de91b302b4b6c407c54eb0481837dfd', text='encuentra privada de su libertad, o la identidad de o tros partícipes o encubridores del hecho, o \ncualquier otro dato que posibilite su esclarecimiento. \nEn caso de corresponder prisión o reclusión perpetua, podr á aplicarse prisión o reclusión de \nOCHO (8) a QUINCE (15) años. \nSólo podrán gozar de este beneficio quienes tengan una  responsabilidad penal inferior a la de \nlas personas a quienes identificasen. \n(Artículo sustituido por art. 12 de la Ley N° 26.364 , B.O. 30/4/2008) \nARTICULO 41 quater —  Cuando alguno de los delitos previstos en este Código se a cometido \ncon la intervención de menores de dieciocho años de edad , la escala penal correspondiente se \nincrementará en un tercio del mínimo y del máximo, re specto de los mayores que hubieren \nparticipado en el mismo. \n(Artículo incorporado por art. 1° de la Ley N° 25.767  B.O. 1/9/2003) \nTITULO VI \nTENTATIVA \nARTICULO 42.-  El que con el fin de cometer un delito determinado co mienza su ejecución, \npero no lo consuma por circunstancias ajenas a su voluntad , sufrirá las penas determinadas en \nel artículo 44.  \nARTICULO 43.-  El autor de tentativa no estará sujeto a pena cuando desistiere \nvoluntariamente del delito.  \nARTICULO 44.-  La pena que correspondería al agente, si hubiere consum ado el delito, se \ndisminuirá de un tercio a la mitad.  \nSi la pena fuere de reclusión perpetua, la pena de la  tentativa será reclusión de quince a \nveinte años. Si la pena fuese de prisión perpetua, la de tentativa será prisión de diez a quince \naños.  \nSi el delito fuera imposible, la pena se disminuirá e n la mitad y podrá reducírsela al mínimo \nlegal o eximirse de ella, según el grado de peligrosi dad revelada por el delincuente.  \nTITULO VII \nPARTICIPACION CRIMINAL \nARTICULO 45.-  Los que tomasen parte en la ejecución del hecho o presta sen al autor o \nautores un auxilio o cooperación sin los cuales no habría podido cometerse, tendrán la pena \nestablecida para el delito. En la misma pena incurrirán  los que hubiesen determinado \ndirectamente a otro a cometerlo.  \nARTICULO 46.-  Los que cooperen de cualquier otro modo a la ejecución  del hecho y los que \npresten una ayuda posterior cumpliendo promesas anterior es al mismo, serán reprimidos con \nla pena correspondiente al delito, disminuida de un te rcio a la mitad. Si la pena fuere de \nreclusión perpetua, se aplicará reclusión de quince a vein te años y si fuere de prisión \nperpetua, se aplicará prisión de diez a quince años.', start_char_idx=0, end_char_idx=2467, text_template='{metadata_str}\n\n{content}', metadata_template='{key}: {value}', metadata_seperator='\n'), score=0.8807653371758749), NodeWithScore(node=TextNode(id_='d724df88-9b20-4de7-8051-fce1cee5e4ef', embedding=None, metadata={'page_label': '30', 'file_name': 'codigo_penal_de_la_republica_argentina.pdf'}, excluded_embed_metadata_keys=[], excluded_llm_metadata_keys=[], relationships={&lt;NodeRelationship.SOURCE: '1'&gt;: RelatedNodeInfo(node_id='21417ad2-1122-43c0-8d67-c8136bf62673', node_type=None, metadata={'page_label': '30', 'file_name': 'codigo_penal_de_la_republica_argentina.pdf'}, hash='f569556778db476c853123dc79014bf01ab42e3e38fbe5807edccf87d63c227d')}, hash='e5f547ff996193be23f1ce97ab87edf67da0c4de2d59468fba406e5cd863231a', text='equitativo de armonizar el conflicto con mejor resguar do del interés de la víctima. En tal caso \nla acción penal quedará extinguida; o en el mismo supu esto también podrá disponer la \naplicación al caso de lo dispuesto por los artículos 76 ter  y 76 quáter del Código Penal.  \n(Artículo sustituido por art. 15 de la Ley N° 25.087  B.O. 14/5/1999) \nARTICULO 133.  - Los ascendientes, descendientes, cónyuges, convivientes, a fines en línea \nrecta, hermanos, tutores, curadores y cualesquiera persona que, con abuso de una relación de \ndependencia, de autoridad, de poder, de confianza o e ncargo, cooperaren a la perpetración de \nlos delitos comprendidos en este título serán reprimidos co n la pena de los autores. \n(Artículo sustituido por art. 13 de la Ley N° 25.087  B.O.14/5/1999) \n(Nota Infoleg:  rúbricas de los capítulos II, III, IV y V derogadas por art. 1° de la Ley N° \n25.087  B.O.14/5/1999) \nTITULO IV \nDELITOS CONTRA EL ESTADO CIVIL \nCapítulo I \nMatrimonios ilegales \nARTICULO 134.  - Serán reprimidos con prisión de uno a cuatro años, lo s que contrajeren \nmatrimonio sabiendo ambos que existe impedimento que ca use su nulidad absoluta.  \nARTICULO 135.  - Serán reprimidos con prisión de dos a seis años:  \n1º. El que contrajere matrimonio cuando, sabiendo que existe impedimento que cause su \nnulidad absoluta, ocultare esta circunstancia al otro contr ayente;  \n2º. El que engañando a una persona, simulare matrimon io con ella.  \nARTICULO 136.  - El oficial público que a sabiendas autorizare un mat rimonio de los \ncomprendidos en los artículos anteriores, sufrirá, en su ca so, la pena que en ellos se \ndetermina.  \nSi lo autorizare sin saberlo, cuando su ignorancia prove nga de no haber llenado los requisitos \nque la ley prescribe para la celebración del matrimonio , la pena será de multa de setecientos \ncincuenta a pesos doce mil quinientos e inhabilitación esp ecial por seis meses a dos años.  \nSufrirá multa de pesos setecientos cincuenta a pesos doce mi l quinientos el oficial público que, \nfuera de los demás casos de este artículo, procediere a la celebración de un matrimonio sin \nhaber observado todas las formalidades exigidas por la l ey.  \n(Nota Infoleg:  multa actualizada por art. 1° de la Ley N° 24.286  B.O. 29/12/1993) \nARTICULO 137.  - En la misma pena incurrirá el representante legítim o de un menor impúber \nque diere el consentimiento para el matrimonio del mi smo.  \nCapítulo II', start_char_idx=0, end_char_idx=2428, text_template='{metadata_str}\n\n{content}', metadata_template='{key}: {value}', metadata_seperator='\n'), score=0.878223415137106)], metadata={'aab97e14-d6df-4e99-bb5f-43f3cddef01e': {'page_label': '11', 'file_name': 'codigo_penal_de_la_republica_argentina.pdf'}, 'd724df88-9b20-4de7-8051-fce1cee5e4ef': {'page_label': '30', 'file_name': 'codigo_penal_de_la_republica_argentina.pdf'}})</code></pre>
+</div>
+</div>
+<p>Setting up Evaluation using LlamaIndex We have a baseline QA bot, but to even think about improving it, we need a baseline score. This is where evaluating an LLM-based system comes into play. This is a tricky topic and it depends on the system you are trying to build. In this W&amp;B report, “How to Evaluate, Compare, and Optimize LLM Systems?” I have tried to cover the whats and hows of evaluating an LLM-based system. We will not go into detail, but broadly speaking, there are three main categories: Eyeballing: while building a baseline LLM system, we usually eyeball to evaluate the performance of our model. Supervised: This is the recommended way of evaluation where you involve humans to generate an annotated eval dataset for evaluation. LLMs evaluate LLMs: In this paradigm, we leverage a powerful LLM to generate proxy targets based on some context. In our case of a QA bot, we can ask an LLM to generate question-answer pairs.</p>
+<p>Generating Questions using LlamaIndex Using LlamaIndex’s, DatasetGenerator, we can easily generate questions that can be used to evaluate using one of the following strategies but not limited to: Evaluating response for hallucination: Is the generated response coming from the provided context, or is it making up things? Relevance of the retrieved chunks: Evaluate each retrieved chunk (node) against the generated response to see if that node contains the answer to the query. Evaluating the answer quality: Does the query + generated response come from the provided context?</p>
+<p>Using DatasetGenerator is easy, and one can pass the loaded documents to the DatasetGenerator.from_documents method. Calling generate_questions_from_nodes() on the object’s instance will generate N questions per chunk. The default chunk size is 512, and N is 10. You might quickly realize that it will take a long time and a lot of API calls to generate a lot of questions. Let’s customize the data generation process.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>Response(response='\nKrzysztof Maziarz, Andy Davis, Quoc Le, Geoffrey Hinton, and Jeff Dean.', source_nodes=[NodeWithScore(node=TextNode(id_='6483ae64-5538-48e6-ba8f-02452e417a6d', embedding=None, metadata={'page_label': '10', 'file_name': 'mindstorms.pdf'}, excluded_embed_metadata_keys=[], excluded_llm_metadata_keys=[], relationships={&lt;NodeRelationship.SOURCE: '1'&gt;: RelatedNodeInfo(node_id='18208c46-0337-4f62-b2b6-17276f0c5dbd', node_type=None, metadata={'page_label': '10', 'file_name': 'mindstorms.pdf'}, hash='169ecb16f411f01b9da078f9ea1646834d47b15ed9f401393b3ef0005caa3b78'), &lt;NodeRelationship.PREVIOUS: '2'&gt;: RelatedNodeInfo(node_id='084f371f-867b-43d3-a417-bd9567408cad', node_type=None, metadata={'page_label': '10', 'file_name': 'mindstorms.pdf'}, hash='40b65e30ddd22681bf1df3f671585575dac2643bdbf1c4f48b2efa21f3e83246')}, hash='1015ca2b568d94b6ae938cde2f5dede7e38cbb587e2719d1f41f13ae6e754920', text='Chenliang Li, Haiyang Xu, Junfeng Tian, Wei Wang, Ming Yan,\nBin Bi, Jiabo Ye, Hehong Chen, Guohai Xu, Zheng Cao, et al.', start_char_idx=8338, end_char_idx=8457, text_template='{metadata_str}\n\n{content}', metadata_template='{key}: {value}', metadata_seperator='\n'), score=0.7829675888761374), NodeWithScore(node=TextNode(id_='f49d1880-b517-4167-82d0-c57480ba915d', embedding=None, metadata={'page_label': '13', 'file_name': 'mindstorms.pdf'}, excluded_embed_metadata_keys=[], excluded_llm_metadata_keys=[], relationships={&lt;NodeRelationship.SOURCE: '1'&gt;: RelatedNodeInfo(node_id='23d3bdc6-398b-466f-b211-72cf13f8ecaa', node_type=None, metadata={'page_label': '13', 'file_name': 'mindstorms.pdf'}, hash='18ab5cdbf4abda2e53a7489bae21155a8c0d368b98733965bc18020b95a08b71'), &lt;NodeRelationship.PREVIOUS: '2'&gt;: RelatedNodeInfo(node_id='f3efa13c-48bf-4bff-abe8-97cce45e8422', node_type=None, metadata={'page_label': '13', 'file_name': 'mindstorms.pdf'}, hash='dec0edde35c9c4eea12f67c7c11260ef5ba701d073dfbfe3e333fc5db9a5548f')}, hash='d81351f14e0a07ccbe38bbf3cb00fb78548bc8862b8fd8f222ad9e6d71a63dcc', text='Krzysztof Maziarz, Andy\nDavis, Quoc Le, Geoffrey Hinton, and Jeff Dean. Outrageously\nlarge neural networks: The sparsely-gated mixture-of-experts\nlayer.arXiv preprint arXiv:1701.06538, 2017.', start_char_idx=8235, end_char_idx=8425, text_template='{metadata_str}\n\n{content}', metadata_template='{key}: {value}', metadata_seperator='\n'), score=0.7795502192052534)], metadata={'6483ae64-5538-48e6-ba8f-02452e417a6d': {'page_label': '10', 'file_name': 'mindstorms.pdf'}, 'f49d1880-b517-4167-82d0-c57480ba915d': {'page_label': '13', 'file_name': 'mindstorms.pdf'}})</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> llama_index.evaluation <span class="im">import</span> DatasetGenerator, QueryResponseEvaluator</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> llama_index <span class="im">import</span> (</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    SimpleDirectoryReader,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    VectorStoreIndex,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    ServiceContext,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    LLMPredictor,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    Response,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> llama_index.llms <span class="im">import</span> OpenAI</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's use GPT 3.5 as our LLM of choice.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> OpenAI(temperature<span class="op">=</span><span class="dv">0</span>, model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>service_context <span class="op">=</span> ServiceContext.from_defaults(llm<span class="op">=</span>llm, callback_manager<span class="op">=</span>callback_manager)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's just use a meaningful subset of the shuffled documents.</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>random_documents <span class="op">=</span> copy.deepcopy(documents)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>random.shuffle(random_documents)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>random_documents <span class="op">=</span> random_documents[:<span class="dv">10</span>]</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's reduce the number of questions per chunk.</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>data_generator <span class="op">=</span> DatasetGenerator.from_documents(</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    random_documents, service_context<span class="op">=</span>service_context, num_questions_per_chunk<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate questions</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>eval_questions <span class="op">=</span> data_generator.generate_questions_from_nodes()</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>eval_questions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.
+wandb: Logged trace tree to W&amp;B.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>['What are the potential penalties for individuals who obstruct the extinguishing of a fire or the defense against a disaster, according to the Argentine Penal Code?',
+ 'How does the Argentine Penal Code differentiate the penalties for causing a fire or other damages due to negligence versus those that result in endangering or causing the death of a person?',
+ 'What is the potential penalty for carrying unauthorized weapons according to the Penal Code of Argentina?',
+ 'Under what circumstances can the penalty for carrying weapons be reduced according to the Penal Code of Argentina?',
+ 'How does Article 172 of the Argentine Penal Code define the crime of fraud? Provide examples of the different fraudulent acts mentioned in the article.',
+ 'According to Article 173 of the Argentine Penal Code, what are some specific cases of fraud and the corresponding penalties? Explain each case briefly.',
+ 'What actions can be considered as defrauding the rights of cocontractors according to the Argentine Penal Code?',
+ 'Under what circumstances can the execution of a property be considered illegal according to the Argentine Penal Code?',
+ 'What are the penalties for the crime of abigeato according to the Argentine Penal Code?',
+ 'Under what circumstances would a person receive a special disqualification in addition to their sentence for a crime under the Abigeato chapter of the Penal Code?',
+ 'What are the potential penalties for a public official who requires the assistance of the police against the execution of legal provisions or judicial orders?',
+ 'What are the consequences for a military personnel who abandons their service or deserts during a time of armed conflict or catastrophe?',
+ 'What is the penalty for a military personnel who, due to negligence or failure to follow regulations, causes the death of one or more people during a conflict or disaster situation?',
+ 'When does the law mentioned in the context information come into effect and what measures will be taken during the six-month period before its implementation?',
+ 'What are the potential penalties for individuals who knowingly enter into an illegal marriage, despite being aware of an impediment that would render the marriage null and void?',
+ 'Who can be held criminally liable for assisting in the commission of crimes outlined in this section of the penal code, and what penalties may they face?',
+ 'What are the penalties for falsifying official seals, stamps, and marks according to the Argentine Penal Code?',
+ 'What actions can result in imprisonment according to Article 287 of the Argentine Penal Code?',
+ 'What is the penalty for knowingly using or selling invalidated stamps, seals, or marks, as mentioned in the given context information?',
+ 'According to the context information, what is the range of fines for the offense of using or selling invalidated stamps, seals, or marks?',
+ 'According to the Penal Code of Argentina, under what circumstances is abortion not considered a punishable offense?',
+ "What are the potential penalties for causing harm to another person's body or health, as outlined in the Penal Code of Argentina?",
+ "What are the possible circumstances under which a person can be held liable for causing harm to another person's body or health according to the Argentine Penal Code?",
+ 'How does the minimum penalty for causing injuries described in articles 90 or 91 change if certain circumstances specified in the second paragraph of article 84 are present?',
+ 'According to Article 52 of the Argentine Penal Code, under what circumstances can a person be sentenced to indefinite reclusion as an accessory to their last conviction?',
+ 'What are the conditions that must be met for a convicted individual to be eligible for conditional release after serving a period of indefinite reclusion as stated in Article 53 of the Argentine Penal Code?',
+ 'According to Article 54 of the Argentine Penal Code, what happens when a criminal act falls under multiple penalties?',
+ 'How does Article 55 of the Argentine Penal Code determine the minimum penalty for a defendant when multiple independent acts are punished with the same type of penalty?',
+ "According to Article 175 bis of the Argentine Penal Code, what is the punishment for someone who takes advantage of another person's need, inexperience, or vulnerability to obtain excessive interest rates or extortive guarantees?",
+ 'In the case of a fraudulent bankruptcy, what are some of the actions that can lead to imprisonment and special disqualification for a period of time, as stated in Articles 176 and 177 of the Argentine Penal Code?',
+ 'According to the context information, who are the individuals that could be held responsible for the bankruptcy of a bank or financial institution?',
+ 'In the given context, what positions or roles within a failed company or establishment could potentially face legal consequences?',
+ 'According to Article 119 of the Argentine Penal Code, what are the potential penalties for sexually abusing a minor under the age of thirteen?',
+ 'In Article 120 of the Argentine Penal Code, what are the circumstances that can result in a higher penalty for someone who engages in sexual acts with a person under the age of sixteen?',
+ 'What is the significance of the Law N° 25.087 in relation to the articles 121, 122, and 123 of the Argentine Penal Code?',
+ 'Why were the articles 121, 122, and 123 of the Argentine Penal Code derogated by the Law N° 25.087?']</code></pre>
+</div>
+</div>
+<p>Evaluating for Hallucination The LLM generates a response using the provided context (chunks). In this evaluation strategy, we ask another LLM (GPT-4) to say a YES if the response was generated using the provided context and NO otherwise. One can implement this strategy in LlamaIndex using the ResponseEvaluator class. In this evaluation mode, we call the evaluate method of the instance of this class.</p>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> llama_index.evaluation <span class="im">import</span> ResponseEvaluator</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>gpt3 <span class="op">=</span> OpenAI(temperature<span class="op">=</span><span class="dv">0</span>, model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>service_context_gpt3 <span class="op">=</span> ServiceContext.from_defaults(llm<span class="op">=</span>gpt3)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>evaluator_gpt3 <span class="op">=</span> QueryResponseEvaluator(service_context<span class="op">=</span>service_context_gpt3)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># create vector index</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>vector_index <span class="op">=</span> VectorStoreIndex.from_documents(</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    documents, service_context<span class="op">=</span>service_context_gpt3</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define jupyter display function</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_eval_df(query: <span class="bu">str</span>, response: Response, eval_result: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    eval_df <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Query"</span>: query,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Response"</span>: <span class="bu">str</span>(response),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Source"</span>: response.source_nodes[<span class="dv">0</span>].node.get_content()[:<span class="dv">1000</span>] <span class="op">+</span> <span class="st">"..."</span>,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Evaluation Result"</span>: eval_result,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        index<span class="op">=</span>[<span class="dv">0</span>],</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    eval_df <span class="op">=</span> eval_df.style.set_properties(</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">**</span>{</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"inline-size"</span>: <span class="st">"600px"</span>,</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">"overflow-wrap"</span>: <span class="st">"break-word"</span>,</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>        subset<span class="op">=</span>[<span class="st">"Response"</span>, <span class="st">"Source"</span>]</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    display(eval_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>query_engine <span class="op">=</span> vector_index.as_query_engine()</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>response_vector <span class="op">=</span> query_engine.query(eval_questions[<span class="dv">1</span>])</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>eval_result <span class="op">=</span> evaluator_gpt3.evaluate(eval_questions[<span class="dv">1</span>], response_vector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>display_eval_df(eval_questions[<span class="dv">1</span>], response_vector, eval_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<style type="text/css">
+#T_7fbbf_row0_col1, #T_7fbbf_row0_col2 {
+  inline-size: 600px;
+  overflow-wrap: break-word;
+}
+</style>
+
+<table id="T_7fbbf" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th id="T_7fbbf_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Query</th>
+<th id="T_7fbbf_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Response</th>
+<th id="T_7fbbf_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Source</th>
+<th id="T_7fbbf_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Evaluation Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_7fbbf_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
+<td id="T_7fbbf_row0_col0" class="data row0 col0">How does the Argentine Penal Code differentiate the penalties for causing a fire or other damages due to negligence versus those that result in endangering or causing the death of a person?</td>
+<td id="T_7fbbf_row0_col1" class="data row0 col1">According to the context information provided, the Argentine Penal Code differentiates the penalties for causing a fire or other damages due to negligence from those that result in endangering or causing the death of a person based on the severity of the consequences. For causing a fire, explosion, or flood with common danger to property, the penalty is imprisonment or confinement for three to ten years. If the fire or destruction is caused by other means, such as the destruction of crops, forests, livestock, or other plantations, the penalty is also imprisonment or confinement for three to ten years. However, if there is danger to a public archive, library, museum, military arsenal, or if there is danger of death to a person, the penalties increase. The penalty for endangering a public archive, for example, is imprisonment or confinement for three to fifteen years. If the act results in the immediate death of a person, the penalty is imprisonment or confinement for eight to twenty years. Therefore, the Argentine Penal Code differentiates the penalties based on the level of danger or harm caused, with more severe penalties for acts that result in endangering or causing the death of a person.</td>
+<td id="T_7fbbf_row0_col2" class="data row0 col2">el que por imprudencia o negligencia, por impericia en su arte o profesión, o por inobservanci a de los reglamentos o deberes a su cargo, causare a otro un daño en el cuerpo o en la salud . Si las lesiones fueran de las descritas en los artículos 90 ó 91 y concurriera alguna de las circunstancias previstas en el segundo párrafo del artículo 84, el mínimo de la pena prevista en el primer párrafo, será de seis meses o multa de tres mil pesos e inhabilitación especial por dieciocho meses. (Artículo sustituido por art. 2° de la Ley N° 25.189 28/10/1999)...</td>
+<td id="T_7fbbf_row0_col3" class="data row0 col3">YES</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install nltk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Collecting nltk
+  Downloading nltk-3.8.1-py3-none-any.whl (1.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.5/1.5 MB 6.8 MB/s eta 0:00:00m eta 0:00:010:01:01
+Requirement already satisfied: click in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from nltk) (8.1.6)
+Collecting joblib
+  Downloading joblib-1.3.1-py3-none-any.whl (301 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 302.0/302.0 kB 6.2 MB/s eta 0:00:00 MB/s eta 0:00:01
+Requirement already satisfied: regex&gt;=2021.8.3 in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from nltk) (2023.6.3)
+Requirement already satisfied: tqdm in /home/franfram/.pyenv/versions/3.11.1/lib/python3.11/site-packages (from nltk) (4.65.0)
+Installing collected packages: joblib, nltk
+Successfully installed joblib-1.3.1 nltk-3.8.1
+
+[notice] A new release of pip available: 22.3.1 -&gt; 23.2.1
+[notice] To update, run: pip install --upgrade pip</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> llama_index <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>keyword_index <span class="op">=</span> KeywordTableIndex.from_documents(documents)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[nltk_data] Downloading package stopwords to
+[nltk_data]     /home/franfram/nltk_data...
+[nltk_data]   Unzipping corpora/stopwords.zip.</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>keyword_index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+<pre><code>&lt;llama_index.indices.keyword_table.base.KeywordTableIndex at 0x7f52b8d7cad0&gt;</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

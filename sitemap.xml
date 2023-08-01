@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://franfram.github.io/llmtools/hyde-tutorial.html</loc>
+    <lastmod>2023-08-01T11:26:44.273Z</lastmod>
+  </url>
+  <url>
+    <loc>https://franfram.github.io/llmtools/index.html</loc>
+    <lastmod>2023-08-01T11:26:42.069Z</lastmod>
+  </url>
+  <url>
+    <loc>https://franfram.github.io/llmtools/llamaindex.html</loc>
+    <lastmod>2023-08-01T11:26:41.045Z</lastmod>
+  </url>
+  <url>
+    <loc>https://franfram.github.io/llmtools/02_Train_vectorstore_index_with_Llamaindex.html</loc>
+    <lastmod>2023-08-01T11:26:39.889Z</lastmod>
+  </url>
+  <url>
+    <loc>https://franfram.github.io/llmtools/core.html</loc>
+    <lastmod>2023-08-01T11:26:41.417Z</lastmod>
+  </url>
+  <url>
+    <loc>https://franfram.github.io/llmtools/advance_query_engine_with_llamaindex.html</loc>
+    <lastmod>2023-08-01T11:26:43.793Z</lastmod>
+  </url>
+</urlset>
